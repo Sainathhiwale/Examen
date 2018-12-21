@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_androidtut"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Android Tutorial" />
+        <item
+            android:id="@+id/nav_pythontut"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Python Tutorial" />
+        <item
+            android:id="@+id/nav_reacttut"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="React Tutorial" />
+        <item
+            android:id="@+id/nav_javatut"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Java Tutorial" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Share" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Feed Back" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Logout" />
+    </group>
+
+
+
+</menu>
