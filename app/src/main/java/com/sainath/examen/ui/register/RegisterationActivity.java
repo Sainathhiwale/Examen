@@ -13,18 +13,37 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
+import com.sainath.examen.app.AppController;
+import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.prefs.SharedPrefsHelper;
 import com.sainath.examen.ui.login.LoginActivity;
+import com.sainath.examen.utils.AppConstants;
 
 public class RegisterationActivity extends AppCompatActivity implements RegistrationContract.RegistrationView, View.OnClickListener {
     private EditText etUserName, etPassword;
     private Button btnRegister;
     private RegisterationPresenterImpl presenter;
     private ProgressDialog mPrgressDialog;
+    private DataManager dataManager;
+    private String getUserName;
+    private SharedPrefsHelper sharedPrefsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
+        sharedPrefsHelper = new SharedPrefsHelper(this);
+        dataManager = ((AppController) getApplication()).getDataManager();
+        if (dataManager.getLoggedInMode()){
+            getUserName = dataManager.getUserName();
+            Intent intent = new Intent(RegisterationActivity.this,HomeActivity.class);
+            intent.putExtra(AppConstants.USERNAME,getUserName);
+            startActivity(intent);
+            finish();
+        }else {
+            presenter = new RegisterationPresenterImpl(this);
+        }
+
         initView();
     }
 
@@ -43,6 +62,8 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
         mPrgressDialog.dismiss();
         Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        intent.putExtra(AppConstants.USERNAME,firebaseUser.getEmail());
+        //sharedPrefsHelper.putUserName(firebaseUser.getEmail());
         startActivity(intent);
         finish();
 
@@ -69,6 +90,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     private void checkRegistrationDetails() {
         if (!TextUtils.isEmpty(etUserName.getText().toString()) && !TextUtils.isEmpty(etPassword.getText().toString())) {
             initRegister(etUserName.getText().toString().trim(), etPassword.getText().toString().trim());
+
         } else {
             if (TextUtils.isEmpty(etUserName.getText().toString())) {
                 etUserName.setError("please enter the user name");

@@ -8,6 +8,7 @@
     <color name="logoColor1">#786F69</color>
     <color name="logoColor">#00BC22</color>
 
+    <color name="transparent">#00ffffff</color>
     <color name="white">#FFFFFF</color>
     <color name="splashBackgroundColor">#94BD90</color>
     <color name="graylight">#fafafa</color>
@@ -44,4 +45,7 @@
     <color name="google">#d34836</color>
     <color name="fb">#3b5998</color>
     <color name="colorblack">#13171d</color>
+
+    <color name="translucent_scrim_bottom">#6f000000</color>
+    <color name="translucent_scrim_bottom_center">#0D000000</color>
 </resources>
