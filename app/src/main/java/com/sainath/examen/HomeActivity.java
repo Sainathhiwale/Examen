@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
 import com.sainath.examen.ui.home.HomeFragment;
+import com.sainath.examen.ui.login.LoginActivity;
 import com.sainath.examen.ui.register.RegisterationActivity;
 import com.sainath.examen.utils.AppConstants;
 

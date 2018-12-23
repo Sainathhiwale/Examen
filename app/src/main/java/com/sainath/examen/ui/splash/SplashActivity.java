@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.sainath.examen.R;
+import com.sainath.examen.ui.login.LoginActivity;
 import com.sainath.examen.ui.register.RegisterationActivity;
 
 import butterknife.Bind;

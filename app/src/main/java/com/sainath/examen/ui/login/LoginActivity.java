@@ -14,8 +14,15 @@ import android.widget.Toast;
 
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
+import com.sainath.examen.app.AppController;
+import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.prefs.SharedPrefsHelper;
+import com.sainath.examen.ui.register.RegisterationActivity;
+import com.sainath.examen.ui.register.RegisterationPresenterImpl;
+import com.sainath.examen.utils.AppConstants;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView{
@@ -27,6 +34,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     Button btLogin;
     private LoginPresenterImpl presenter;
     private ProgressDialog mProgressDialog;
+    private DataManager dataManager;
+    private String getUserName;
+    private SharedPrefsHelper sharedPrefsHelper;
 
 
     @Override
@@ -36,13 +46,24 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+        sharedPrefsHelper = new SharedPrefsHelper(this);
+        dataManager = ((AppController) getApplication()).getDataManager();
+        if (dataManager.getLoggedInMode()){
+            getUserName = dataManager.getUserName();
+            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            intent.putExtra(AppConstants.USERNAME,getUserName);
+            startActivity(intent);
+            finish();
+        }else {
+            presenter = new LoginPresenterImpl(this);
+        }
         initView();
 
     }
 
     private void initView() {
         presenter = new LoginPresenterImpl(this);
-
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Please wait, Logging in...");
     }
@@ -53,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             case R.id.btLogin:
                 checkLoginDetails();
                 break;
+
 
         }
     }

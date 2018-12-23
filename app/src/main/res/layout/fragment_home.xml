@@ -108,6 +108,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
+        android:background="@color/graylight"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
@@ -117,6 +118,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
+            android:background="@color/graylight"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
@@ -192,6 +194,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
+        android:background="@color/graylight"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
@@ -200,6 +203,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
+            android:background="@color/graylight"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
@@ -237,6 +241,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
+            android:background="@color/graylight"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
