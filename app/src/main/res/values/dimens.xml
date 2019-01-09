@@ -17,5 +17,11 @@
     <dimen name="app_bar_height">100dp</dimen>
 
     <dimen name="textsize_10sp">10sp</dimen>
+    <dimen name="pad_b_main">10dp</dimen>
+    <dimen name="pad_main">15dp</dimen>
+    <dimen name="img_view_main">50dp</dimen>
+    <dimen name="dim_three">71dp</dimen>
+    <dimen name="dim_one">48dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
 
 </resources>

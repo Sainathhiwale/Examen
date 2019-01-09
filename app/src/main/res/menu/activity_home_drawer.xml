@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_androidtut"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_android"
             android:title="Android Tutorial" />
         <item
             android:id="@+id/nav_pythontut"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_python"
             android:title="Python Tutorial" />
         <item
             android:id="@+id/nav_reacttut"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_cprogram"
             android:title="React Tutorial" />
         <item
             android:id="@+id/nav_javatut"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_java"
             android:title="Java Tutorial" />
 
         <item
@@ -31,7 +31,7 @@
             android:title="Feed Back" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_logout_power"
             android:title="Logout" />
     </group>
 

@@ -1,4 +1,4 @@
-package com.sainath.examen.ui.android_tut;
+package com.sainath.examen.ui.interview;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.sainath.examen.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AndroidTutFragment extends Fragment {
+public class InterviewFragment extends Fragment {
 
 
-    public AndroidTutFragment() {
+    public InterviewFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class AndroidTutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_android_tut, container, false);
+        View view = inflater.inflate(R.layout.fragment_interview, container, false);
         return view;
     }
 

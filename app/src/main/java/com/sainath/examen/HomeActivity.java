@@ -24,6 +24,7 @@ import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
 import com.sainath.examen.ui.android_tut.AndroidTutFragment;
+import com.sainath.examen.ui.feedback.FeedBackFragment;
 import com.sainath.examen.ui.home.HomeFragment;
 import com.sainath.examen.ui.java_tut.JavaTutFragment;
 import com.sainath.examen.ui.login.LoginActivity;
@@ -161,7 +162,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_feedback) {
-
+            FeedBackFragment feedBackFragment = new FeedBackFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_container,feedBackFragment);
+            fragmentTransaction.commit();
         }else if (id == R.id.nav_logout){
             dataManager.clear();
             Intent intent = new Intent(HomeActivity.this, RegisterationActivity.class);
