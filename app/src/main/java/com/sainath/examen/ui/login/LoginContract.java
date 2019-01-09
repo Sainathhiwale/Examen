@@ -23,13 +23,6 @@ public interface LoginContract {
         void onFailure(String message);
     }
 
-    interface LoginGPresenter{
-        void handleGLoginRequest();
-        void requestGLogin(Activity activity,String email, String displayName, Uri photoUrl);
-        void handleGLoginFailure(int statusCode, String message);
-    }
 
-   /* interface LoginGInteactor{
-        void performGoogleLogin(Activity activity,String email, String displayName, Uri photoUrl);
-    }*/
+
 }

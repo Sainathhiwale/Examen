@@ -14,5 +14,14 @@
     <string name="daily_quiz">Daily Quiz</string>
     <string name="interview">Interview</string>
     <string name="technews">Tech News</string>
+
     <style name="technews">Tech News</style>
+
+    <!--google signin -->
+    <string name="google_web_client_id" translatable="false">403271001593-p9g861mka9lg0p32on345g5rq83ehju2.apps.googleusercontent.com</string>
+    <string name="msg_login_successful">Login successful</string>
+    <string name="something_went_wrong">Something went wrong. Please try again</string>
+    <string name="unable_to_login">Unable to login with this account</string>
+
+
 </resources>

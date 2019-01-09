@@ -1,14 +1,22 @@
 package com.sainath.examen.ui.register;
 
 import android.app.Activity;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseUser;
+import com.sainath.examen.data.DataHandler;
 
 public class RegisterationPresenterImpl implements RegistrationContract.RegistrationPresenter, RegistrationContract.onRegistrationListener {
     private RegistrationContract.RegistrationView registrationView;
     private RegisterationIntractorImpl registerIntractor;
 
-    public RegisterationPresenterImpl(RegistrationContract.RegistrationView registrationView) {
+    private RegistrationContract.RegistrationGView registrationGView;
+    private DataHandler mDataHandler;
+
+     RegisterationPresenterImpl(RegistrationContract.RegistrationView registrationView) {
         this.registrationView = registrationView;
         this.registerIntractor = new RegisterationIntractorImpl(this);
     }
@@ -31,8 +39,12 @@ public class RegisterationPresenterImpl implements RegistrationContract.Registra
         registrationView.setRegistrationSuccess(firebaseUser);
     }
 
+
+
     @Override
     public void onFailure(String message) {
         registrationView.setRegistrationFailure(message);
     }
+
+
 }

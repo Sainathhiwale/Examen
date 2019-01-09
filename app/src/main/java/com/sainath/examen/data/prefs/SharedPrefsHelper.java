@@ -12,8 +12,12 @@ public class SharedPrefsHelper {
     private static final String MY_PREFS = "EXAMEN_PREFS";
     private static final String EMAIL = "EMAIL";
     private static final String USERCODE = "USERCODE";
-    private static final String USERNAME = "USERNAME";
+    public static final String USERNAME = "USERNAME";
     private static final String IS_LOG_IN = "IS_LOGGED_IN";
+    public static final String USERID_TOKEN ="userIdToken";
+    public static final String USER_NAME = "userName";
+    public static final String USER_EMAIL ="userEmail";
+    public static final String USER_IMAGEPROFILE ="userImageProfile";
 
     private SharedPreferences mSharedPreferences;
 
@@ -41,6 +45,24 @@ public class SharedPrefsHelper {
 
     public String getUserName() {
         return  mSharedPreferences.getString(USERNAME, AppConstants.EMPTY);
+    }
+
+    public void setStringPrefs(String key,String value){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(key,value);
+        editor.apply();
+    }
+    public String getStringPrefs(String key){
+        return mSharedPreferences.getString(key,null);
+    }
+
+    public void setImagePrefs(String key,String uriString){
+        SharedPreferences.Editor prefEditor = mSharedPreferences.edit();
+        prefEditor.putString("key", uriString);
+        prefEditor.apply();
+    }
+    public String getImagePrefs(String key){
+        return mSharedPreferences.getString(key,null);
     }
 
 }
