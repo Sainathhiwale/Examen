@@ -1,8 +1,10 @@
 package com.sainath.examen.ui.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sainath.examen.R;
+import com.sainath.examen.ui.interview.InterviewActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,9 +55,14 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(),"Daily quiz",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.interview_img:
-                Toast.makeText(getActivity(),"Interview quiz",Toast.LENGTH_SHORT).show();
+                 openInterview();
                 break;
         }
+    }
+
+    private void openInterview() {
+        Intent interviewIntent = new Intent(getActivity(), InterviewActivity.class);
+        startActivity(interviewIntent);
     }
    /* @Override
     public void onDestroyView() {
