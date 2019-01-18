@@ -1,4 +1,4 @@
-package com.sainath.examen.data.model;
+package com.sainath.examen.data.model.quiz;
 
 import android.support.annotation.NonNull;
 

@@ -1,10 +1,9 @@
-package com.sainath.examen.data.model;
+package com.sainath.examen.data.model.quiz;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.sainath.examen.data.Question;
 
 import java.util.HashMap;
 import java.util.Map;

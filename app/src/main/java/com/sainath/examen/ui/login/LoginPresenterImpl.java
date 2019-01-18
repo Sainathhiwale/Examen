@@ -16,6 +16,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter, LoginCo
     @Override
     public void requestLogin(Activity activity, String email, String password) {
         loginIntractor.performFirebaseLogin(activity, email, password);
+
     }
 
     @Override
