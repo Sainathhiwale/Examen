@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.sainath.examen.R;
 import com.sainath.examen.ui.interview.InterviewActivity;
+import com.sainath.examen.ui.quiz.android_quiz.AndroidQuizActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,7 +30,8 @@ public class HomeFragment extends Fragment {
     ImageView dq_imageView;
     @Bind(R.id.interview_img)
     ImageView interview_img;
-    LinearLayout bankcardId;
+    @Bind(R.id.llinerAndroid)
+    LinearLayout llinerAndroid;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -45,7 +47,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.technews_img,R.id.dq_imageView,R.id.interview_img})
+    @OnClick({R.id.technews_img,R.id.dq_imageView,R.id.interview_img,R.id.llinerAndroid})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.technews_img:
@@ -57,6 +59,9 @@ public class HomeFragment extends Fragment {
             case R.id.interview_img:
                  openInterview();
                 break;
+            case R.id.llinerAndroid:
+               Intent intentAndroid = new Intent(getActivity(), AndroidQuizActivity.class);
+               startActivity(intentAndroid);
         }
     }
 

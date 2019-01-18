@@ -29,7 +29,8 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.register.RegisterationActivity" />
-        <activity android:name=".ui.interview.InterviewActivity"></activity>
+        <activity android:name=".ui.interview.InterviewActivity" />
+        <activity android:name=".ui.quiz.android_quiz.AndroidQuizActivity"></activity>
     </application>
 
 </manifest>

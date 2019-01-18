@@ -24,4 +24,11 @@
     <dimen name="dim_one">48dp</dimen>
     <dimen name="margin_6">6dp</dimen>
 
+    <dimen name="quiz_filter_button_margin_end">16dp</dimen>
+    <dimen name="difficulty_view_margin">4dp</dimen>
+    <dimen name="medium_margin">8dp</dimen>
+    <dimen name="card_view_elevation">2dp</dimen>
+    <dimen name="card_view_corner_radius">2dp</dimen>
+    <dimen name="difficulty_view_width">48dp</dimen>
+    <dimen name="difficulty_view_height">16dp</dimen>
 </resources>

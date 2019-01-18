@@ -48,8 +48,27 @@ public class FresherFragment extends Fragment {
     }
 
     private void initData() {
-        FresherQuiz experienceQuiz = new FresherQuiz("What is Android","Android is os it's platform to consist middle layer of some key app");
-        fresherQuizList.add(experienceQuiz);
+        FresherQuiz e1 = new FresherQuiz("1.Tell me about Yourself?","My name is sainath hiwale I belongsto Aurangabad and I have done MCA in Computer science.I have four members in my family at Aurangabad");
+        fresherQuizList.add(e1);
+        FresherQuiz e2 = new FresherQuiz("2.What is your greatest weakness?","I can not say no when someone ask for help and i am a bit lazy about which i am not interested ");
+        fresherQuizList.add(e2);
+        FresherQuiz e3 = new FresherQuiz("3.How do you handle stress and pressure?","stress is very important to me because I do best under stress and pressure. I’ve found that I really enjoy working in a challenging environment.");
+        fresherQuizList.add(e3);
+        FresherQuiz e4 = new FresherQuiz("4.Why should we hire you?","Sir,as I am a fresher,i have theoretical knowledge but I can do hard work for my organization.And I will put all my efforts\n" +
+                "for the good progress of organization.Being punctual ans sincere, I can finish the work given to me on time and try\n" +
+                "my best to fulfill and the needs of company from me.");
+        fresherQuizList.add(e4);
+        FresherQuiz e5 = new FresherQuiz("5.Why do you want to work here?","Sir, it is a great privilege for anyone to work in a reputed company like yours.\n" +
+                "        When I read about your company I found that my skills are matching your requirements.\n" +
+                "        Here I can showcase my skills to contribute to the company growth.");
+                fresherQuizList.add(e5);
+
+
+
+
+
+
+
     }
 
 }

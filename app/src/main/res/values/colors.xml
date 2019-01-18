@@ -48,4 +48,13 @@
 
     <color name="translucent_scrim_bottom">#6f000000</color>
     <color name="translucent_scrim_bottom_center">#0D000000</color>
+    <color name="on_color">#48ea8b</color>
+    <color name="off_color">#ff4651</color>
+    <color name="ripple_color">#bdbdbd</color>
+    <color name="black_background">#243447</color>
+
+    <color name="color_green_deadline">#22C461</color>
+    <color name="color_red_deadline">#DC1A2E</color>
+    <color name="color_yellow_deadline">#FFBE4E</color>
+
 </resources>
