@@ -2,7 +2,6 @@ package com.sainath.examen.ui.register;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -34,14 +32,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
 import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.model.user.User;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
 import com.sainath.examen.utils.AppConstants;
 import com.sainath.examen.utils.NetworkUtils;
 import com.sainath.examen.utils.Validation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -58,28 +62,26 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     @Bind(R.id.scrollview)
     ScrollView scrollview;
     private RegisterationPresenterImpl presenter;
-
     private ProgressDialog mPrgressDialog;
     private DataManager dataManager;
     private String getUserName;
 
     private SharedPrefsHelper sharedPrefsHelper;
     private GoogleSignInClient mGoogleSignInClient;
-
     private FirebaseAuth mAuth;
-
-    private Bundle extras;
-
-    private static final String TAG = "RegisterationActivity";
     private SignInButton signInButton;
     private GoogleApiClient googleApiClient;
+    private Bundle extras;
     private static final int RC_SIGN_IN = 1;
     String name, email;
     String idToken;
+    private Uri userImgProfile;
+    private static final String TAG = "RegisterationActivity";
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private Uri userImgProfile;
-
+    //our database reference object
+    private DatabaseReference databaseReference;
+    private List<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,10 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
         setContentView(R.layout.activity_registeration);
         ButterKnife.bind(this);
 
+        //getting the reference of artists node
+        databaseReference = FirebaseDatabase.getInstance().getReference("USER");
         sharedPrefsHelper = new SharedPrefsHelper(this);
+
         dataManager = ((AppController) getApplication()).getDataManager();
         if (dataManager.getLoggedInMode()) {
             getUserName = dataManager.getUserName();
@@ -106,13 +111,19 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 // Get signedIn user
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 //if user is signed in, we call a helper method to save the user details to Firebase
-                if (user!=null){
-                    // User is signed in
+                if (user != null) {
+                    // UserProfile is signed in
                     // you could place other firebase code
                     //logic to save the user details to Firebase
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    String id = databaseReference.push().getKey();
+                    if (id!=null){
+                        User users = new User(id,user.getEmail(),user.getDisplayName());
+                        databaseReference.child(id).setValue(users);
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    }
 
-                }else {
+
+                } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
             }
@@ -122,8 +133,8 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         initView();
@@ -137,7 +148,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
             @Override
             public void onClick(View v) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent,RC_SIGN_IN);
+                startActivityForResult(intent, RC_SIGN_IN);
             }
         });
     }
@@ -155,7 +166,14 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
         Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         intent.putExtra(AppConstants.USERNAME, firebaseUser.getEmail());
-        //sharedPrefsHelper.putUserName(firebaseUser.getEmail());
+        intent.putExtra(AppConstants.DISPLAYNAME,firebaseUser.getDisplayName());
+        //getting a unique id using push().getKey() method
+        //it will create a unique id and we will use it as the Primary Key for our User
+        String id = databaseReference.push().getKey();
+        User user = new User(id,etUserName.getText().toString(),firebaseUser.getDisplayName());
+        //Saving the Artist
+        databaseReference.child(id).setValue(user);
+
         startActivity(intent);
         finish();
 
@@ -224,23 +242,23 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        if (result.isSuccess()){
+        if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
             idToken = account.getIdToken();
             name = account.getDisplayName();
             email = account.getEmail();
             userImgProfile = account.getPhotoUrl();
             // you can store user data to SharedPreference
-            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USERID_TOKEN ,idToken);
-            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USER_NAME,name);
-            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USER_EMAIL,email);
+            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USERID_TOKEN, idToken);
+            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USER_NAME, name);
+            sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USER_EMAIL, email);
             sharedPrefsHelper.setStringPrefs(SharedPrefsHelper.USER_IMAGEPROFILE, String.valueOf(userImgProfile));
             AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
             firebaseAuthWithGoogle(credential);
@@ -252,10 +270,10 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                          Toast.makeText(RegisterationActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
-                          gotoProfile();
-                        }else {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegisterationActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                            gotoProfile();
+                        } else {
                             Log.w(TAG, "signInWithCredential" + task.getException().getMessage());
                             task.getException().printStackTrace();
                             Toast.makeText(RegisterationActivity.this, "Authentication failed.",
@@ -275,7 +293,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     @Override
     protected void onStart() {
         super.onStart();
-        if (authStateListener!=null){
+        if (authStateListener != null) {
             FirebaseAuth.getInstance().signOut();
         }
         firebaseAuth.addAuthStateListener(authStateListener);
@@ -284,7 +302,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     @Override
     protected void onStop() {
         super.onStop();
-        if (authStateListener!=null){
+        if (authStateListener != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
     }

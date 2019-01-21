@@ -20,6 +20,12 @@ public class DataManager {
     public String getUserName(){
         return mSharedPrefsHelper.getUserName();
     }
+    public void setDisplayName (String displayName){
+        mSharedPrefsHelper.putDisplayName(displayName);
+    }
+    public String getDisplayName(){
+        return mSharedPrefsHelper.getDisplayName();
+    }
     public void setLoggedIn(){
         mSharedPrefsHelper.setLoggedInMode(true);
     }

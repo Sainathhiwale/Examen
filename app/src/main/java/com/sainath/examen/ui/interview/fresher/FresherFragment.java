@@ -22,7 +22,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FresherFragment extends Fragment {
-   private List<FresherQuiz> fresherQuizList;
+   private List<FresherQuiz> fresherQuizList = new ArrayList<>();
    private FresherAdapter fresherAdapter;
    private RecyclerView recyclerView;
     public FresherFragment() {
@@ -36,7 +36,7 @@ public class FresherFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fresher, container, false);
         recyclerView  =(RecyclerView)view.findViewById(R.id.rvFresher);
-        fresherQuizList = new ArrayList<>();
+
         fresherAdapter = new FresherAdapter(fresherQuizList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);

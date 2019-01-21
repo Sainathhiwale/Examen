@@ -18,6 +18,7 @@ public class SharedPrefsHelper {
     public static final String USER_NAME = "userName";
     public static final String USER_EMAIL ="userEmail";
     public static final String USER_IMAGEPROFILE ="userImageProfile";
+    public static final String DISPLAYNAME ="displayName";
 
     private SharedPreferences mSharedPreferences;
 
@@ -46,7 +47,13 @@ public class SharedPrefsHelper {
     public String getUserName() {
         return  mSharedPreferences.getString(USERNAME, AppConstants.EMPTY);
     }
+    public void putDisplayName(String displayName) {
+        mSharedPreferences.edit().putString(DISPLAYNAME, displayName).apply();
+    }
 
+    public String getDisplayName() {
+        return  mSharedPreferences.getString(DISPLAYNAME, AppConstants.EMPTY);
+    }
     public void setStringPrefs(String key,String value){
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(key,value);
@@ -65,4 +72,7 @@ public class SharedPrefsHelper {
         return mSharedPreferences.getString(key,null);
     }
 
+    public String getDisplayName(String displayname) {
+        return mSharedPreferences.getString(DISPLAYNAME,AppConstants.EMPTY);
+    }
 }

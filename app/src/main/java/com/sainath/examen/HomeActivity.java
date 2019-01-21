@@ -50,7 +50,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dataManager = ((AppController) getApplication()).getDataManager();
         dataManager.setLoggedIn();
         String getUserName = getIntent().getStringExtra(AppConstants.USERNAME);
+        String getDisplayName = getIntent().getStringExtra(AppConstants.DISPLAYNAME);
         dataManager.setUserName(getUserName);
+        dataManager.setDisplayName(getDisplayName);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,7 +78,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         initView();
         showPrefsToViews();
 
+
     }
+
+
+
 
     private void initView() {
         ivNavHeader = (ImageView)navHeader.findViewById(R.id.ivNavHeader);
@@ -94,6 +100,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     .into(ivNavHeader);
         }else {
                 tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USERNAME));
+                tvUserName.setText(sharedPrefsHelper.getDisplayName(sharedPrefsHelper.DISPLAYNAME));
                 String url = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USER_IMAGEPROFILE);
                 Glide.with(getApplicationContext())
                         .load(url)

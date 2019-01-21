@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     public void openLoginActivity() {
         Handler mHandler = new Handler(Looper.getMainLooper());
         mHandler.postDelayed(() -> {
-            Intent homeIntent = new Intent(SplashActivity.this, RegisterationActivity.class);
+            Intent homeIntent = new Intent(SplashActivity.this, LoginActivity.class);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(homeIntent);
         }, 1500);
