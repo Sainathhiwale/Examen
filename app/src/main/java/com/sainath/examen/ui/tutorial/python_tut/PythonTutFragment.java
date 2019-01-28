@@ -1,4 +1,4 @@
-package com.sainath.examen.ui.python_tut;
+package com.sainath.examen.ui.tutorial.python_tut;
 
 
 import android.os.Bundle;

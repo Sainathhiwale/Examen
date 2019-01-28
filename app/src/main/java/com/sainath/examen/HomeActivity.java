@@ -3,8 +3,6 @@ package com.sainath.examen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
@@ -22,20 +20,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.model.user.User;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
-import com.sainath.examen.ui.android_tut.AndroidTutFragment;
+import com.sainath.examen.ui.tutorial.android_tut.AndroidTutFragment;
 import com.sainath.examen.ui.feedback.FeedBackFragment;
 import com.sainath.examen.ui.home.HomeFragment;
-import com.sainath.examen.ui.java_tut.JavaTutFragment;
-import com.sainath.examen.ui.login.LoginActivity;
-import com.sainath.examen.ui.python_tut.PythonTutFragment;
-import com.sainath.examen.ui.react_tut.ReactTutFragment;
+import com.sainath.examen.ui.tutorial.java_tut.JavaTutFragment;
+import com.sainath.examen.ui.tutorial.python_tut.PythonTutFragment;
+import com.sainath.examen.ui.tutorial.react_tut.ReactTutFragment;
 import com.sainath.examen.ui.register.RegisterationActivity;
 import com.sainath.examen.utils.AppConstants;
-
-import java.io.FileNotFoundException;
-
-import butterknife.Bind;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView ivNavHeader;
@@ -43,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DataManager dataManager;
     private SharedPrefsHelper sharedPrefsHelper;
     private View navHeader;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,14 +93,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Glide.with(getApplicationContext())
                     .load(url)
                     .into(ivNavHeader);
-        }else {
-                tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USERNAME));
-                tvUserName.setText(sharedPrefsHelper.getDisplayName(sharedPrefsHelper.DISPLAYNAME));
+        } if (user!=null) {
+                tvUserEmail.setText(user.getEmail());
+                tvUserName.setText(sharedPrefsHelper.getDisplayName(sharedPrefsHelper.USER_NAME));
                 String url = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USER_IMAGEPROFILE);
                 Glide.with(getApplicationContext())
                         .load(url)
                         .into(ivNavHeader);
         }
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.sainath.examen.ui.android_tut;
+package com.sainath.examen.ui.tutorial.react_tut;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.sainath.examen.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AndroidTutFragment extends Fragment {
+public class ReactTutFragment extends Fragment {
 
 
-    public AndroidTutFragment() {
+    public ReactTutFragment() {
         // Required empty public constructor
     }
 
@@ -24,8 +24,7 @@ public class AndroidTutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_android_tut, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_react_tut, container, false);
     }
 
 }

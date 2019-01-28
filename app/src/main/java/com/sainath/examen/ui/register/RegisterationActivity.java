@@ -80,7 +80,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     //our database reference object
-    private DatabaseReference databaseReference;
+    private DatabaseReference dbRootReference,examenReference;
     private List<User> userList = new ArrayList<>();
 
     @Override
@@ -89,10 +89,8 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
         setContentView(R.layout.activity_registeration);
         ButterKnife.bind(this);
 
-        //getting the reference of artists node
-        databaseReference = FirebaseDatabase.getInstance().getReference("USER");
         sharedPrefsHelper = new SharedPrefsHelper(this);
-
+        dbRootReference = FirebaseDatabase.getInstance().getReference();
         dataManager = ((AppController) getApplication()).getDataManager();
         if (dataManager.getLoggedInMode()) {
             getUserName = dataManager.getUserName();
@@ -111,21 +109,21 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 // Get signedIn user
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 //if user is signed in, we call a helper method to save the user details to Firebase
-                if (user != null) {
+               /* if (user != null) {
                     // UserProfile is signed in
                     // you could place other firebase code
                     //logic to save the user details to Firebase
-                    String id = databaseReference.push().getKey();
+                    String id = dbRootReference.push().getKey();
                     if (id!=null){
                         User users = new User(id,user.getEmail(),user.getDisplayName());
-                        databaseReference.child(id).setValue(users);
+                        dbRootReference.child(id).setValue(users);
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     }
 
 
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
+                }*/
             }
         };
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -167,12 +165,6 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         intent.putExtra(AppConstants.USERNAME, firebaseUser.getEmail());
         intent.putExtra(AppConstants.DISPLAYNAME,firebaseUser.getDisplayName());
-        //getting a unique id using push().getKey() method
-        //it will create a unique id and we will use it as the Primary Key for our User
-        String id = databaseReference.push().getKey();
-        User user = new User(id,etUserName.getText().toString(),firebaseUser.getDisplayName());
-        //Saving the Artist
-        databaseReference.child(id).setValue(user);
 
         startActivity(intent);
         finish();

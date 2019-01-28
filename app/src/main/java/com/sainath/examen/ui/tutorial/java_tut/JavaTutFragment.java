@@ -1,4 +1,4 @@
-package com.sainath.examen.ui.java_tut;
+package com.sainath.examen.ui.tutorial.java_tut;
 
 
 import android.os.Bundle;
