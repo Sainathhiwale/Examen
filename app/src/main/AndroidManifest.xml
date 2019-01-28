@@ -31,6 +31,8 @@
         <activity android:name=".ui.register.RegisterationActivity" />
         <activity android:name=".ui.interview.InterviewActivity" />
         <activity android:name=".ui.quiz.android_quiz.AndroidQuizActivity" />
+        <activity android:name=".ui.user_account.signin.SignInActivity" />
+        <activity android:name=".ui.user_account.signup.SignUpActivity"></activity>
     </application>
 
 </manifest>

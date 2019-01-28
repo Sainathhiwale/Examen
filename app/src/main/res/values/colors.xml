@@ -57,4 +57,7 @@
     <color name="color_red_deadline">#DC1A2E</color>
     <color name="color_yellow_deadline">#FFBE4E</color>
 
+    <color name="grey_400">#BDBDBD</color>
+
+
 </resources>
