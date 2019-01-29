@@ -42,6 +42,7 @@
     <string name="dummy_status">Completed</string>
     <string name="dummy_quiz_level">Hard</string>
     <string name="deadline">Deadline :</string>
+    <string name="appemail">Examen@gmail.com</string>
 
 
 </resources>

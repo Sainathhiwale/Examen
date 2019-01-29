@@ -110,7 +110,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 //if user is signed in, we call a helper method to save the user details to Firebase
                /* if (user != null) {
-                    // UserProfile is signed in
+                    // UserInfo is signed in
                     // you could place other firebase code
                     //logic to save the user details to Firebase
                     String id = dbRootReference.push().getKey();

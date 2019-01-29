@@ -20,6 +20,8 @@ public class SharedPrefsHelper {
     public static final String USER_IMAGEPROFILE ="userImageProfile";
     public static final String DISPLAYNAME ="displayName";
 
+    public static final String GPLUSNAME = "GPLUSName";
+
     private SharedPreferences mSharedPreferences;
 
     public SharedPrefsHelper(Context context) {
@@ -75,4 +77,19 @@ public class SharedPrefsHelper {
     public String getDisplayName(String displayname) {
         return mSharedPreferences.getString(DISPLAYNAME,AppConstants.EMPTY);
     }
+    public void putGPlusName(String userName) {
+        mSharedPreferences.edit().putString(GPLUSNAME, userName).apply();
+    }
+
+    public String getGplusname(){
+        return  mSharedPreferences.getString(GPLUSNAME, AppConstants.EMPTY);
+    }
+
+    //g+  login sharedpreference
+    public void setGPlusName(String key,String value){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString("key",value);
+        editor.apply();
+    }
+
 }
