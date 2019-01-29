@@ -17,8 +17,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
+import com.sainath.examen.data.model.user.User;
 import com.sainath.examen.data.model.user.UserInfo;
 import com.sainath.examen.data.prefs.AppPreferences;
 
@@ -43,7 +46,9 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     String personEmail;
     String personId;
     Uri personPhoto;
+    private User user;
     AppPreferences appPreferences;
+    DatabaseReference RootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,8 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         appPreferences = new AppPreferences(this);
+        RootRef = FirebaseDatabase.getInstance().getReference();
+        user = new User();
         signInPresenter = new SignInPresenter(this);
         GoogleSignInOptions gso =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -107,6 +114,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()){
+
             GoogleSignInAccount acct = result.getSignInAccount();
              personName = acct.getDisplayName();
              personEmail = acct.getEmail();
@@ -116,6 +124,11 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
              appPreferences.putUserEmail(personEmail);
              appPreferences.putUserPhoto(personPhoto);
              appPreferences.putUserId(personId);
+            String id = RootRef.push().getKey();
+            if (id!=null){
+                User users = new User(id,personEmail,personName);
+                RootRef.child("Users").setValue(users);
+            }
         }
     }
 

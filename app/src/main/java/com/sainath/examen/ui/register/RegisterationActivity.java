@@ -109,7 +109,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
                 // Get signedIn user
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 //if user is signed in, we call a helper method to save the user details to Firebase
-               /* if (user != null) {
+                if (user != null) {
                     // UserInfo is signed in
                     // you could place other firebase code
                     //logic to save the user details to Firebase
@@ -123,7 +123,7 @@ public class RegisterationActivity extends AppCompatActivity implements Registra
 
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                }*/
+                }
             }
         };
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
