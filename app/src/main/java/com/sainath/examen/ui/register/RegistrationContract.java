@@ -28,35 +28,6 @@ public interface RegistrationContract {
         void onFailure(String message);
     }
 
-    interface RegistrationGView {
-        void setfirebaseAuthWithGoogle(GoogleSignInAccount account);
 
-        void setloginFailure(int statusCode, String message);
-
-        void startSignIn();
-
-        void navigateToProfile();
-
-        void showProgress();
-
-        void hideProgress();
-    }
-
-    interface RegistrationGPresenter {
-        /*void start(@Nullable Bundle extras);
-        void destroy();
-        void handleGLoginRequest();*/
-        void requestGLogin(String email, String displayName, Uri photoUrl);
-        void handleGLoginFailure(int statusCode, String message);
-    }
-
-    interface RegisterGoogleInteractor {
-        void firebaseAuthWithGoogle(GoogleSignInAccount account);
-    }
-
-    interface onRegistrationGListener{
-        void onSuccess(GoogleSignInAccount account);
-        void onFailure(String message);
-    }
 
 }

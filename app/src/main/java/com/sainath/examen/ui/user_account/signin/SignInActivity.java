@@ -1,13 +1,18 @@
 package com.sainath.examen.ui.user_account.signin;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -17,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sainath.examen.HomeActivity;
@@ -24,37 +30,50 @@ import com.sainath.examen.R;
 import com.sainath.examen.data.model.user.User;
 import com.sainath.examen.data.model.user.UserInfo;
 import com.sainath.examen.data.prefs.AppPreferences;
+import com.sainath.examen.ui.user_account.signin.login.LoginContract;
+import com.sainath.examen.ui.user_account.signin.login.LoginPresenterImpl;
+import com.sainath.examen.utils.CommonUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignInActivity extends AppCompatActivity implements SignInContract.SignInView, GoogleApiClient.OnConnectionFailedListener {
-    private static final String TAG = SignInActivity.class.getSimpleName();
-
-    private GoogleApiClient mGoogleApiClient;
-
-    private int SIGN_IN_REQUEST_CODE = 888;
-    private SignInPresenter signInPresenter;
-    private UserInfo userModelSingleton;
-
+public class SignInActivity extends AppCompatActivity implements SignInContract.SignInView, LoginContract.LoginView, GoogleApiClient.OnConnectionFailedListener {
+    @Bind(R.id.etEmail)
+    EditText etEmail;
+    @Bind(R.id.etPassword)
+    EditText etPassword;
+    @Bind(R.id.btnSignIn)
+    Button btnSignIn;
+    @Bind(R.id.tvForgotPass)
+    TextView tvForgotPass;
     @Bind(R.id.sign_in_progress_bar)
     ProgressBar sign_in_progress_bar;
     @Bind(R.id.signInButton)
     SignInButton signInButton;
+    private static final String TAG = SignInActivity.class.getSimpleName();
+    private GoogleApiClient mGoogleApiClient;
+    private int SIGN_IN_REQUEST_CODE = 888;
+    private SignInPresenter signInPresenter;
+    private LoginPresenterImpl presenter;
+    private DataSnapshot dataSnapshot;
     String personName;
     String personEmail;
     String personId;
     Uri personPhoto;
     private User user;
+    private static String ID="1";
     AppPreferences appPreferences;
     DatabaseReference RootRef;
+    String parentDbName="Create Account";
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
+        presenter = new LoginPresenterImpl(this);
         appPreferences = new AppPreferences(this);
         RootRef = FirebaseDatabase.getInstance().getReference();
         user = new User();
@@ -69,9 +88,51 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+     initView();
+    }
+//firebase login code
+    private void initView() {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Please wait, Logging in...");
 
     }
+    @OnClick({R.id.btnSignIn,R.id.tvForgotPass})
+    public void onViewClicked(View view){
+        switch (view.getId()){
+            case R.id.btnSignIn:
+                checkLoginDetails();
+                break;
+            case R.id.tvForgotPass:
+                resetPasswordActivity();
+                break;
 
+        }
+    }
+
+
+    private void checkLoginDetails() {
+        if (!TextUtils.isEmpty(etEmail.getText().toString())&&!TextUtils.isEmpty(etPassword.getText().toString())){
+            initLogin(etEmail.getText().toString().trim(),etPassword.getText().toString().trim());
+        }else {
+            if (TextUtils.isEmpty(etEmail.getText().toString().trim())){
+                etEmail.setError("please enter user name");
+            }if (TextUtils.isEmpty(etPassword.getText().toString().trim())){
+                etPassword.setError("please enter password");
+            }
+        }
+    }
+
+    private void initLogin(String email, String password) {
+        presenter.requestLogin(this,email,password);
+        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(homeIntent);
+        finish();
+    }
+    private void resetPasswordActivity() {
+    }
+
+
+    // google + sign in code
     @Override
     protected void onStart() {
         super.onStart();
@@ -94,6 +155,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         showProgressBar(true);
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, SIGN_IN_REQUEST_CODE);
+
     }
     private void showProgressBar(boolean show) {
         sign_in_progress_bar.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -114,7 +176,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()){
-
             GoogleSignInAccount acct = result.getSignInAccount();
              personName = acct.getDisplayName();
              personEmail = acct.getEmail();
@@ -124,17 +185,19 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
              appPreferences.putUserEmail(personEmail);
              appPreferences.putUserPhoto(personPhoto);
              appPreferences.putUserId(personId);
-            String id = RootRef.push().getKey();
-            if (id!=null){
-                User users = new User(id,personEmail,personName);
-                RootRef.child("Users").setValue(users);
-            }
+            RootRef.child("Users").child(personId);
+            RootRef.child("Users").push();
+            user = new User(personId,personEmail,personName);
+            RootRef.child("Users").child(personId)
+                    .setValue(user);
+
         }
     }
 
     @Override
     public void startHomeActivity() {
         Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
+        Toast.makeText(getApplicationContext(), " Sign In Successfully", Toast.LENGTH_SHORT).show();
         startActivity(homeIntent);
         showProgressBar(false);
     }
@@ -145,5 +208,21 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
                 Toast.LENGTH_SHORT).show();
 
         showProgressBar(false);
+    }
+
+
+//firebase login code
+    @Override
+    public void onSuccess(String message) {
+        mProgressDialog.dismiss();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onFailure(String message) {
+        mProgressDialog.dismiss();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
     }
 }

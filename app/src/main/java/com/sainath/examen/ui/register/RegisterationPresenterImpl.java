@@ -13,7 +13,7 @@ public class RegisterationPresenterImpl implements RegistrationContract.Registra
     private RegistrationContract.RegistrationView registrationView;
     private RegisterationIntractorImpl registerIntractor;
 
-    private RegistrationContract.RegistrationGView registrationGView;
+
     private DataHandler mDataHandler;
 
      RegisterationPresenterImpl(RegistrationContract.RegistrationView registrationView) {
