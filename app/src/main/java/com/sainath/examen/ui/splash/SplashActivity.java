@@ -16,7 +16,7 @@ import com.sainath.examen.ui.user_account.signup.SignUpActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
+//splash screen
 public class SplashActivity extends AppCompatActivity implements SplashContract.SplashView {
     @Bind(R.id.ivLogo)
     ImageView ivLogo;
