@@ -8,15 +8,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
-import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
 import com.sainath.examen.ui.user_account.signin.SignInActivity;
-import com.sainath.examen.ui.user_account.signup.SignUpActivity;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-//splash screen segg
+//
 public class SplashActivity extends AppCompatActivity implements SplashContract.SplashView {
     @Bind(R.id.ivLogo)
     ImageView ivLogo;

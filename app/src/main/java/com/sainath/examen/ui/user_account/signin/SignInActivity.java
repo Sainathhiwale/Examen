@@ -6,15 +6,10 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,31 +17,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
 import com.sainath.examen.data.model.user.User;
-import com.sainath.examen.data.model.user.UserInfo;
 import com.sainath.examen.data.prefs.AppPreferences;
-import com.sainath.examen.ui.user_account.signin.login.LoginContract;
-import com.sainath.examen.ui.user_account.signin.login.LoginPresenterImpl;
-import com.sainath.examen.utils.CommonUtils;
+
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignInActivity extends AppCompatActivity implements SignInContract.SignInView, LoginContract.LoginView, GoogleApiClient.OnConnectionFailedListener {
-    @Bind(R.id.etEmail)
-    EditText etEmail;
-    @Bind(R.id.etPassword)
-    EditText etPassword;
-    @Bind(R.id.btnSignIn)
-    Button btnSignIn;
-    @Bind(R.id.tvForgotPass)
-    TextView tvForgotPass;
+public class SignInActivity extends AppCompatActivity implements SignInContract.SignInView,  GoogleApiClient.OnConnectionFailedListener {
+
     @Bind(R.id.sign_in_progress_bar)
     ProgressBar sign_in_progress_bar;
     @Bind(R.id.signInButton)
@@ -55,8 +39,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     private GoogleApiClient mGoogleApiClient;
     private int SIGN_IN_REQUEST_CODE = 888;
     private SignInPresenter signInPresenter;
-    private LoginPresenterImpl presenter;
-    private DataSnapshot dataSnapshot;
     String personName;
     String personEmail;
     String personId;
@@ -73,7 +55,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
-        presenter = new LoginPresenterImpl(this);
         appPreferences = new AppPreferences(this);
         RootRef = FirebaseDatabase.getInstance().getReference();
         user = new User();
@@ -88,49 +69,15 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-     initView();
+
     }
+
 //firebase login code
     private void initView() {
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Please wait, Logging in...");
 
     }
-    @OnClick({R.id.btnSignIn,R.id.tvForgotPass})
-    public void onViewClicked(View view){
-        switch (view.getId()){
-            case R.id.btnSignIn:
-                checkLoginDetails();
-                break;
-            case R.id.tvForgotPass:
-                resetPasswordActivity();
-                break;
-
-        }
-    }
-
-
-    private void checkLoginDetails() {
-        if (!TextUtils.isEmpty(etEmail.getText().toString())&&!TextUtils.isEmpty(etPassword.getText().toString())){
-            initLogin(etEmail.getText().toString().trim(),etPassword.getText().toString().trim());
-        }else {
-            if (TextUtils.isEmpty(etEmail.getText().toString().trim())){
-                etEmail.setError("please enter user name");
-            }if (TextUtils.isEmpty(etPassword.getText().toString().trim())){
-                etPassword.setError("please enter password");
-            }
-        }
-    }
-
-    private void initLogin(String email, String password) {
-        presenter.requestLogin(this,email,password);
-        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
-        startActivity(homeIntent);
-        finish();
-    }
-    private void resetPasswordActivity() {
-    }
-
 
     // google + sign in code
     @Override
@@ -211,18 +158,5 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
 
-//firebase login code
-    @Override
-    public void onSuccess(String message) {
-        mProgressDialog.dismiss();
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
-    }
-
-    @Override
-    public void onFailure(String message) {
-        mProgressDialog.dismiss();
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-
-    }
 }
