@@ -20,9 +20,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
-import com.sainath.examen.data.model.user.User;
-import com.sainath.examen.data.model.user.UserInfo;
-import com.sainath.examen.data.prefs.AppPreferences;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
 import com.sainath.examen.ui.tutorial.android_tut.AndroidTutFragment;
 import com.sainath.examen.ui.feedback.FeedBackFragment;
@@ -31,28 +28,21 @@ import com.sainath.examen.ui.tutorial.java_tut.JavaTutFragment;
 import com.sainath.examen.ui.tutorial.python_tut.PythonTutFragment;
 import com.sainath.examen.ui.tutorial.react_tut.ReactTutFragment;
 import com.sainath.examen.ui.user_account.signin.SignInActivity;
-import com.sainath.examen.utils.AppConstants;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView ivNavHeader;
     private TextView tvUserName,tvUserEmail;
     private DataManager dataManager;
     private SharedPrefsHelper sharedPrefsHelper;
-    private AppPreferences appPreferences;
+
     private View navHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        appPreferences = new AppPreferences(this);
         dataManager = ((AppController) getApplication()).getDataManager();
         dataManager.setLoggedIn();
-        String getUserName = getIntent().getStringExtra(AppConstants.USERNAME);
-        String getDisplayName = getIntent().getStringExtra(AppConstants.DISPLAYNAME);
-        dataManager.setUserName(getUserName);
-        dataManager.setDisplayName(getDisplayName);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //Default Fragment
@@ -75,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navHeader = navigationView.getHeaderView(0);
         sharedPrefsHelper = new SharedPrefsHelper(this);
         initView();
-        showPrefsToViews();
+        //showPrefsToViews();
 
 
     }
@@ -87,9 +77,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ivNavHeader = (ImageView)navHeader.findViewById(R.id.ivNavHeader);
         tvUserName = (TextView)navHeader.findViewById(R.id.tvUserName);
         tvUserEmail = (TextView)navHeader.findViewById(R.id.tvUserEmail);
-        tvUserName.setText(appPreferences.getStringPrefs(AppPreferences.KEY_USER_NAME));
-        tvUserEmail.setText(appPreferences.getStringPrefs(AppPreferences.KEY_USER_EMAIL));
-        String photoUrl = appPreferences.getStringPrefs(AppPreferences.KEY_USER_PHOTO);
+        tvUserName.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_NAME));
+        tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_EMAIL));
+        String photoUrl = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_PHOTO);
         Glide.with(getApplicationContext())
                 .load(photoUrl)
                 .into(ivNavHeader);
@@ -97,28 +87,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void showPrefsToViews() {
-        if (sharedPrefsHelper!=null) {
-            tvUserName.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USER_NAME));
-            tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USER_EMAIL));
-            String url = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.USER_IMAGEPROFILE);
-            Glide.with(getApplicationContext())
-                    .load(url)
-                    .into(ivNavHeader);
-        }if (appPreferences!=null){
-            tvUserName.setText(appPreferences.getStringPrefs(AppPreferences.KEY_USER_NAME));
-            tvUserEmail.setText(appPreferences.getStringPrefs(AppPreferences.KEY_USER_EMAIL));
-            String photoUrl = appPreferences.getStringPrefs(AppPreferences.KEY_USER_PHOTO);
-            Glide.with(getApplicationContext())
-                    .load(photoUrl)
-                    .into(ivNavHeader);
-
-        }else {
-            tvUserName.setText(R.string.app_name);
-            tvUserName.setText(R.string.appemail);
-        }
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -146,7 +114,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            appPreferences.clear();
             Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -193,7 +160,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else if (id == R.id.nav_logout){
             dataManager.clear();
             Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         }

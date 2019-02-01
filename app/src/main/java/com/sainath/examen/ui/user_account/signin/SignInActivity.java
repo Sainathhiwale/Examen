@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
 import com.sainath.examen.data.model.user.User;
-import com.sainath.examen.data.prefs.AppPreferences;
+import com.sainath.examen.data.prefs.SharedPrefsHelper;
 
 
 import butterknife.Bind;
@@ -44,8 +44,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     String personId;
     Uri personPhoto;
     private User user;
-    private static String ID="1";
-    AppPreferences appPreferences;
+    SharedPrefsHelper sharedPrefsHelper;
     DatabaseReference RootRef;
     String parentDbName="Create Account";
     private ProgressDialog mProgressDialog;
@@ -55,7 +54,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
-        appPreferences = new AppPreferences(this);
+        sharedPrefsHelper = new SharedPrefsHelper(this);
         RootRef = FirebaseDatabase.getInstance().getReference();
         user = new User();
         signInPresenter = new SignInPresenter(this);
@@ -128,10 +127,11 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
              personEmail = acct.getEmail();
              personId = acct.getId();
              personPhoto = acct.getPhotoUrl();
-             appPreferences.putUserName(personName);
-             appPreferences.putUserEmail(personEmail);
-             appPreferences.putUserPhoto(personPhoto);
-             appPreferences.putUserId(personId);
+             sharedPrefsHelper.putUserName(personName);
+             sharedPrefsHelper.putUserEmail(personEmail);
+             sharedPrefsHelper.putUserPhoto(personPhoto);
+             sharedPrefsHelper.putUserId(personId);
+             sharedPrefsHelper.getLoggedInMode();
             RootRef.child("Users").child(personId);
             RootRef.child("Users").push();
             user = new User(personId,personEmail,personName);

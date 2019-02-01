@@ -2,6 +2,7 @@ package com.sainath.examen.data.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import com.sainath.examen.utils.AppConstants;
 
@@ -9,29 +10,24 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SharedPrefsHelper {
 
-    private static final String MY_PREFS = "EXAMEN_PREFS";
-    private static final String EMAIL = "EMAIL";
-    private static final String USERCODE = "USERCODE";
-    public static final String USERNAME = "USERNAME";
+    // shared preferences keys
+    public static final String KEY_USER_NAME = "KEY_USER_NAME";
+    public static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
+    public static final String KEY_USER_PHOTO = "KEY_USER_PHOTO";
+    public static final String KEY_USER_ID = "KEY_USER_ID";
     private static final String IS_LOG_IN = "IS_LOGGED_IN";
-    public static final String USERID_TOKEN ="userIdToken";
-    public static final String USER_NAME = "userName";
-    public static final String USER_EMAIL ="userEmail";
-    public static final String USER_IMAGEPROFILE ="userImageProfile";
-    public static final String DISPLAYNAME ="displayName";
 
-    public static final String GPLUSNAME = "GPLUSName";
 
+    private static final String PREFERENCES_NAME = "EXAMEN_USER";
     private SharedPreferences mSharedPreferences;
 
     public SharedPrefsHelper(Context context) {
-        mSharedPreferences = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+        this.mSharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
     public void clear() {
         mSharedPreferences.edit().clear().apply();
     }
-
 
     public boolean getLoggedInMode() {
         return mSharedPreferences.getBoolean(IS_LOG_IN, false);
@@ -41,55 +37,45 @@ public class SharedPrefsHelper {
         mSharedPreferences.edit().putBoolean(IS_LOG_IN, loggedIn).apply();
     }
 
-
     public void putUserName(String userName) {
-        mSharedPreferences.edit().putString(USERNAME, userName).apply();
+        mSharedPreferences.edit().putString(KEY_USER_NAME, userName).apply();
     }
 
     public String getUserName() {
-        return  mSharedPreferences.getString(USERNAME, AppConstants.EMPTY);
-    }
-    public void putDisplayName(String displayName) {
-        mSharedPreferences.edit().putString(DISPLAYNAME, displayName).apply();
+        return mSharedPreferences.getString(KEY_USER_NAME, AppConstants.EMPTY2);
     }
 
-    public String getDisplayName() {
-        return  mSharedPreferences.getString(DISPLAYNAME, AppConstants.EMPTY);
+    public void putUserEmail(String userEmail) {
+        mSharedPreferences.edit().putString(KEY_USER_EMAIL, userEmail).apply();
     }
-    public void setStringPrefs(String key,String value){
+
+    public String getUserEmail() {
+        return mSharedPreferences.getString(KEY_USER_EMAIL, AppConstants.EMPTY2);
+    }
+
+    public void putUserPhoto(Uri userPhoto) {
+        mSharedPreferences.edit().putString(KEY_USER_PHOTO, String.valueOf(userPhoto)).apply();
+    }
+
+    public String getUserPhoto() {
+        return mSharedPreferences.getString(KEY_USER_PHOTO, AppConstants.EMPTY2);
+    }
+
+    public void putUserId(String userId) {
+        mSharedPreferences.edit().putString(KEY_USER_ID, userId).apply();
+    }
+
+    public String getUserId() {
+        return mSharedPreferences.getString(KEY_USER_ID, AppConstants.EMPTY2);
+    }
+
+    public void setStringPrefs(String key, String value) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(key,value);
-        editor.apply();
-    }
-    public String getStringPrefs(String key){
-        return mSharedPreferences.getString(key,null);
-    }
-
-    public void setImagePrefs(String key,String uriString){
-        SharedPreferences.Editor prefEditor = mSharedPreferences.edit();
-        prefEditor.putString("key", uriString);
-        prefEditor.apply();
-    }
-    public String getImagePrefs(String key){
-        return mSharedPreferences.getString(key,null);
-    }
-
-    public String getDisplayName(String displayname) {
-        return mSharedPreferences.getString(DISPLAYNAME,AppConstants.EMPTY);
-    }
-    public void putGPlusName(String userName) {
-        mSharedPreferences.edit().putString(GPLUSNAME, userName).apply();
-    }
-
-    public String getGplusname(){
-        return  mSharedPreferences.getString(GPLUSNAME, AppConstants.EMPTY);
-    }
-
-    //g+  login sharedpreference
-    public void setGPlusName(String key,String value){
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString("key",value);
+        editor.putString(key, value);
         editor.apply();
     }
 
+    public String getStringPrefs(String key) {
+        return mSharedPreferences.getString(key, null);
+    }
 }

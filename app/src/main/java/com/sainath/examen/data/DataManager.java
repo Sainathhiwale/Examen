@@ -21,10 +21,10 @@ public class DataManager {
         return mSharedPrefsHelper.getUserName();
     }
     public void setDisplayName (String displayName){
-        mSharedPrefsHelper.putDisplayName(displayName);
+        mSharedPrefsHelper.putUserEmail(displayName);
     }
     public String getDisplayName(){
-        return mSharedPrefsHelper.getDisplayName();
+        return mSharedPrefsHelper.getUserEmail();
     }
     public void setLoggedIn(){
         mSharedPrefsHelper.setLoggedInMode(true);
