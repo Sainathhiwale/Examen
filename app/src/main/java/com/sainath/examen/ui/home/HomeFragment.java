@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.sainath.examen.R;
 import com.sainath.examen.ui.interview.InterviewActivity;
+import com.sainath.examen.ui.news.NewsActivity;
 import com.sainath.examen.ui.quiz.android_quiz.AndroidQuizActivity;
 
 import butterknife.Bind;
@@ -51,13 +52,15 @@ public class HomeFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.technews_img:
-                Toast.makeText(getActivity(), "News is coming", Toast.LENGTH_SHORT).show();
+                Intent newsIntent = new Intent(getActivity(), NewsActivity.class);
+                startActivity(newsIntent);
                 break;
             case R.id.dq_imageView:
                 Toast.makeText(getActivity(),"Daily quiz",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.interview_img:
-                 openInterview();
+                Intent interviewIntent = new Intent(getActivity(), InterviewActivity.class);
+                startActivity(interviewIntent);
                 break;
             case R.id.llinerAndroid:
                Intent intentAndroid = new Intent(getActivity(), AndroidQuizActivity.class);
@@ -65,25 +68,5 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void openInterview() {
-        Intent interviewIntent = new Intent(getActivity(), InterviewActivity.class);
-        startActivity(interviewIntent);
-    }
-   /* @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }*/
-
-   /* @OnClick (R.id.bankcardId)
-    public void onViewClicked(View view){
-        switch (view.getId()){
-            case R.id.bankcardId:
-                PythonQuizFragment pythonQuizFragment = new PythonQuizFragment();
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_container,pythonQuizFragment);
-                fragmentTransaction.commit();
-        }
-    }*/
 
 }

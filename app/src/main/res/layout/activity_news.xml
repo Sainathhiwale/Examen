@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.quiz.android_quiz.AndroidQuizActivity">
+    tools:context=".ui.news.NewsActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_layout_home"
+        android:id="@+id/app_bar_layout_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@animator/appbar_elevated"
@@ -17,14 +17,14 @@
         tools:targetApi="lollipop">
 
         <LinearLayout
-            android:id="@+id/updatelist"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <TextView
-                android:id="@+id/tvBackArrow"
+                android:id="@+id/tvBKANews"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -33,9 +33,8 @@
                 android:paddingStart="16dp"
                 android:backgroundTint="#FFFF"
                 android:background="@drawable/ic_back_arrow" />
-
             <TextView
-                android:id="@+id/tvATilte"
+                android:id="@+id/tvNTilte"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
@@ -43,16 +42,15 @@
                 android:paddingEnd="8dp"
                 android:textColor="#FFFF"
                 android:paddingStart="12dp"
-                android:text="Android Quiz"
+                android:text="News"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-
     <LinearLayout
-        android:id="@+id/llAndyBegin"
+        android:id="@+id/llTechNews"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_12"
@@ -65,13 +63,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Beginners"
+            android:text="Tech News"
             android:textAlignment="center"
             android:textColor="@color/green" />
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/llAndyInter"
+        android:id="@+id/llHackerNS"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_12"
@@ -83,13 +81,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Intermediate"
+            android:text="Hacker News"
             android:textAlignment="center"
             android:textColor="@color/green" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llAndyAdv"
+        android:id="@+id/llNews"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_12"
@@ -101,25 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Advanced"
-            android:textAlignment="center"
-            android:textColor="@color/green"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llSampleCode"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:background="@drawable/cardview_shape"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Sample Code"
+            android:text="News"
             android:textAlignment="center"
             android:textColor="@color/green"/>
 

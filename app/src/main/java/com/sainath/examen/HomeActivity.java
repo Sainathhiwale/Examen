@@ -1,5 +1,6 @@
 package com.sainath.examen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sainath.examen.app.AppController;
@@ -34,7 +36,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView tvUserName,tvUserEmail;
     private DataManager dataManager;
     private SharedPrefsHelper sharedPrefsHelper;
-
+    private long mBackPressed;
+    private static final int TIME_INTERVAL = 3000;
     private View navHeader;
 
     @Override
@@ -95,6 +98,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+           /*if (mBackPressed +TIME_INTERVAL>System.currentTimeMillis()){
+               android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+               builder.setMessage("Are you sure you want to exit?")
+                       .setCancelable(false)
+                       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               finishAffinity();
+                           }
+                       })
+                       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               dialog.dismiss();
+                           }
+                       });
+               android.support.v7.app.AlertDialog alert = builder.create();
+               alert.show();
+           }else {
+               Toast.makeText(getBaseContext(), "Press again to exit", Toast.LENGTH_SHORT).show();
+
+           }
+            mBackPressed = System.currentTimeMillis();
+        }*/
         }
     }
 
@@ -134,21 +161,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             AndroidTutFragment androidTutFragment = new AndroidTutFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,androidTutFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_pythontut) {
             PythonTutFragment pythonTutFragment = new PythonTutFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,pythonTutFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_reacttut) {
             ReactTutFragment reactTutFragment = new ReactTutFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,reactTutFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_javatut) {
             JavaTutFragment javaTutFragment = new JavaTutFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,javaTutFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_share) {
 
@@ -156,6 +187,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             FeedBackFragment feedBackFragment = new FeedBackFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.main_container,feedBackFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_logout){
             dataManager.clear();
