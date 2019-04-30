@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sainath.examen.R;
-import com.sainath.examen.data.model.fresher.FresherQuiz;
+import com.sainath.examen.data.model.fresher.Fresher;
 
 import java.util.List;
 
 public class FresherAdapter extends RecyclerView.Adapter<FresherAdapter.MyViewHolder>  {
-    private List<FresherQuiz>fresherQuizList;
+    private List<Fresher> fresherList;
 
-    public FresherAdapter(List<FresherQuiz> fresherQuizList) {
-        this.fresherQuizList = fresherQuizList;
+    public FresherAdapter(List<Fresher> fresherList) {
+        this.fresherList = fresherList;
     }
 
     @NonNull
@@ -29,13 +29,13 @@ public class FresherAdapter extends RecyclerView.Adapter<FresherAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tvFQuestion.setText(fresherQuizList.get(position).getQuestion());
-        holder.tvFAnswer.setText(fresherQuizList.get(position).getAnwser());
+        holder.tvFQuestion.setText(fresherList.get(position).getQuestion());
+        holder.tvFAnswer.setText(fresherList.get(position).getAnwser());
     }
 
     @Override
     public int getItemCount() {
-        return fresherQuizList.size();
+        return fresherList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

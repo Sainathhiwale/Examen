@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import com.sainath.examen.R;
-import com.sainath.examen.ui.user_account.signin.SignInActivity;
+import com.sainath.examen.ui.user_account.signin.login.SignInActivity;
 
 
 import butterknife.Bind;

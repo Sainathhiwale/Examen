@@ -1,10 +1,11 @@
 package com.sainath.examen.data.model.user;
 
+import android.support.v4.app.FragmentActivity;
+
 public class User {
     private String displayName;
     private String email;
     private String  userID;
-    private String userPhone;
 
 
     public User() {
@@ -17,6 +18,7 @@ public class User {
         this.email = email;
         this.displayName =displayName;
     }
+
 
 
     public String getDisplayName() {

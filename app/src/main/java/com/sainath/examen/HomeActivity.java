@@ -1,6 +1,5 @@
 package com.sainath.examen;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
@@ -17,9 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.sainath.examen.app.AppController;
 import com.sainath.examen.data.DataManager;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
@@ -29,7 +28,7 @@ import com.sainath.examen.ui.home.HomeFragment;
 import com.sainath.examen.ui.tutorial.java_tut.JavaTutFragment;
 import com.sainath.examen.ui.tutorial.python_tut.PythonTutFragment;
 import com.sainath.examen.ui.tutorial.react_tut.ReactTutFragment;
-import com.sainath.examen.ui.user_account.signin.SignInActivity;
+import com.sainath.examen.ui.user_account.signin.login.SignInActivity;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView ivNavHeader;
@@ -39,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private long mBackPressed;
     private static final int TIME_INTERVAL = 3000;
     private View navHeader;
-
+   private GoogleSignInClient signInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,6 +190,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.commit();
         }else if (id == R.id.nav_logout){
             dataManager.clear();
+            signInClient.signOut();
             Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
             startActivity(intent);
             finish();

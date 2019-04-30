@@ -1,13 +1,17 @@
 package com.sainath.examen.data.model.fresher;
 
-public class FresherQuiz {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Fresher {
+
     private String question;
     private String anwser;
 
-    public FresherQuiz() {
+    public Fresher() {
     }
 
-    public FresherQuiz(String question, String anwser) {
+    public Fresher(String question, String anwser) {
         this.question = question;
         this.anwser = anwser;
     }

@@ -1,15 +1,15 @@
 package com.sainath.examen.data.model.expreience;
 
-public class ExperienceQuiz {
+public class Experience {
     private String question;
     private String anwser;
 
-    public ExperienceQuiz(String question, String anwser) {
+    public Experience(String question, String anwser) {
         this.question = question;
         this.anwser = anwser;
     }
 
-    public ExperienceQuiz() {
+    public Experience() {
     }
 
     public String getQuestion() {

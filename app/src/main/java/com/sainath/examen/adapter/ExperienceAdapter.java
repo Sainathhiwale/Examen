@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sainath.examen.R;
-import com.sainath.examen.data.model.expreience.ExperienceQuiz;
+import com.sainath.examen.data.model.expreience.Experience;
 
 import java.util.List;
 
 public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.MyViewHolder>  {
-    private List<ExperienceQuiz> experienceQuizList;
+    private List<Experience> experienceList;
 
-    public ExperienceAdapter(List<ExperienceQuiz> experienceQuizList) {
-        this.experienceQuizList = experienceQuizList;
+    public ExperienceAdapter(List<Experience> experienceList) {
+        this.experienceList = experienceList;
     }
 
     @NonNull
@@ -28,13 +28,13 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tvQuestion.setText(experienceQuizList.get(position).getAnwser());
-        holder.tvAnswer.setText(experienceQuizList.get(position).getQuestion());
+        holder.tvQuestion.setText(experienceList.get(position).getAnwser());
+        holder.tvAnswer.setText(experienceList.get(position).getQuestion());
     }
 
     @Override
     public int getItemCount() {
-        return experienceQuizList.size();
+        return experienceList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

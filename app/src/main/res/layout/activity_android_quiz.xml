@@ -22,7 +22,7 @@
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:popupTheme="@style/AppTheme.PopupOverlay">
             <TextView
                 android:id="@+id/tvBackArrow"
                 android:layout_width="50dp"

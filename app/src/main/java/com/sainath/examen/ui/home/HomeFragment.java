@@ -25,14 +25,14 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
-    @Bind(R.id.technews_img)
-    ImageView technews_img;
-    @Bind(R.id.dq_imageView)
-    ImageView dq_imageView;
-    @Bind(R.id.interview_img)
-    ImageView interview_img;
     @Bind(R.id.llinerAndroid)
     LinearLayout llinerAndroid;
+    @Bind(R.id.llinerCPro)
+    LinearLayout llinerCPro;
+    @Bind(R.id.llinerPython)
+    LinearLayout llinerPython;
+    @Bind(R.id.llinerJava)
+    LinearLayout llinerJava;
 
     public HomeFragment() {
         // Required empty public constructor

@@ -32,4 +32,5 @@
     <dimen name="difficulty_view_width">48dp</dimen>
     <dimen name="difficulty_view_height">16dp</dimen>
     <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
 </resources>

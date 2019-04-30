@@ -160,6 +160,7 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
+                android:id="@+id/llinerCPro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -208,6 +209,7 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
+                android:id="@+id/llinerPython"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -246,6 +248,7 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
+                android:id="@+id/llinerJava"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
