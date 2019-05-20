@@ -11,7 +11,7 @@
         android:id="@+id/app_bar_layout_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stateListAnimator="@animator/appbar_elevated"
+        android:stateListAnimator="@anim/appbar_elevated"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp"
         tools:targetApi="lollipop">

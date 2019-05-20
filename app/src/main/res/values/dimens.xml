@@ -33,4 +33,8 @@
     <dimen name="difficulty_view_height">16dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_5">5dp</dimen>
+    <dimen name="box_x_large">160dp</dimen>
+    <dimen name="margin_xx_large">64dp</dimen>
+    <dimen name="margin_x_large">32dp</dimen>
+    <dimen name="padding_100">100dp</dimen>
 </resources>

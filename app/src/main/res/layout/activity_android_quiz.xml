@@ -11,7 +11,7 @@
         android:id="@+id/app_bar_layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stateListAnimator="@animator/appbar_elevated"
+        android:stateListAnimator="@anim/appbar_elevated"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp"
         tools:targetApi="lollipop">
@@ -52,6 +52,173 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="#fcfcfc"
+        android:gravity="center">
+
+        <LinearLayout
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/llAndyBegin"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/cardview_shape"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgsalesBook"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/icon_android" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Beginners"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorAccent" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAndyInter"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/cardview_shape"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgsalesReturn"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/icon_android" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Intermediate"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorAccent" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/llAndyAdv"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/cardview_shape"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgStatistics"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/icon_android" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Advanced"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorAccent" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSampleCode"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/cardview_shape"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgReport"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/icon_android" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Sample Code"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorAccent" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+   <!-- <LinearLayout
         android:id="@+id/llAndyBegin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -123,6 +290,6 @@
             android:textAlignment="center"
             android:textColor="@color/green"/>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

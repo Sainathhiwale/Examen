@@ -1,14 +1,19 @@
-package com.sainath.examen.ui.user_account.signin.login;
+package com.sainath.examen.ui.login;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
-public interface SignInContract {
-    interface SignInView{
+public class LoginInContract {
+
+    interface LoginInView{
+        void showProgress();
+        void hideProgress();
         void startHomeActivity();
         void showFirebaseAuthenticationFailedMessage();
     }
 
-    interface SignInPresenter{
+    interface LoginPresenter{
         void logInWithFirebase(GoogleSignInAccount account);
+
     }
+
 }

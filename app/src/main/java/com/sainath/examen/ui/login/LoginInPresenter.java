@@ -1,4 +1,4 @@
-package com.sainath.examen.ui.user_account.signin.login;
+package com.sainath.examen.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,14 +14,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignInPresenter implements SignInContract.SignInPresenter{
-    private static final String TAG = SignInActivity.class.getSimpleName();
+public class LoginInPresenter implements LoginInContract.LoginPresenter {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
-    private  SignInContract.SignInView mView;
+    private  LoginInContract.LoginInView mView;
 
     private FirebaseAuth mFirebaseAuth;
 
-    private  Context mContext;
+    private Context mContext;
 
     private FirebaseAuth.AuthStateListener mAuthListener = new FirebaseAuth.AuthStateListener() {
         @Override
@@ -37,12 +37,11 @@ public class SignInPresenter implements SignInContract.SignInPresenter{
         }
     };
 
-    public SignInPresenter(Context context) {
-        mView = (SignInContract.SignInView) context;
+    public LoginInPresenter(Context context){
+        mView = (LoginInContract.LoginInView) context;
         mContext = context;
         mFirebaseAuth = FirebaseAuth.getInstance();
     }
-
     public void setAuthListener() {
         mFirebaseAuth.addAuthStateListener(mAuthListener);
     }
@@ -52,9 +51,8 @@ public class SignInPresenter implements SignInContract.SignInPresenter{
     }
     @Override
     public void logInWithFirebase(GoogleSignInAccount account) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener((Activity) mContext, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -71,4 +69,6 @@ public class SignInPresenter implements SignInContract.SignInPresenter{
                     }
                 });
     }
+
+
 }

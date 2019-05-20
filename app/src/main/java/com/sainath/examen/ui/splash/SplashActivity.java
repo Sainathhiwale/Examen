@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.sainath.examen.HomeActivity;
 import com.sainath.examen.R;
-import com.sainath.examen.ui.user_account.signin.login.SignInActivity;
+import com.sainath.examen.ui.login.LoginActivity;
 
 
 import butterknife.Bind;
@@ -38,7 +40,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     public void openLoginActivity() {
         Handler mHandler = new Handler(Looper.getMainLooper());
         mHandler.postDelayed(() -> {
-            Intent homeIntent = new Intent(SplashActivity.this, SignInActivity.class);
+            Intent homeIntent = new Intent(SplashActivity.this, LoginActivity.class);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(homeIntent);
         }, 1500);

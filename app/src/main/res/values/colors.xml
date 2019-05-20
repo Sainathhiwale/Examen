@@ -58,6 +58,8 @@
     <color name="color_yellow_deadline">#FFBE4E</color>
 
     <color name="grey_400">#BDBDBD</color>
+    <color name="textInputLayout">#96ffffff</color>
+
 
 
 </resources>

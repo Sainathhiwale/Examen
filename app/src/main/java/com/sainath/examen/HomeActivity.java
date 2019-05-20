@@ -1,5 +1,6 @@
 package com.sainath.examen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,17 +30,17 @@ import com.sainath.examen.ui.home.HomeFragment;
 import com.sainath.examen.ui.tutorial.java_tut.JavaTutFragment;
 import com.sainath.examen.ui.tutorial.python_tut.PythonTutFragment;
 import com.sainath.examen.ui.tutorial.react_tut.ReactTutFragment;
-import com.sainath.examen.ui.user_account.signin.login.SignInActivity;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView ivNavHeader;
-    private TextView tvUserName,tvUserEmail;
+    private TextView tvUserName, tvUserEmail;
     private DataManager dataManager;
     private SharedPrefsHelper sharedPrefsHelper;
     private long mBackPressed;
     private static final int TIME_INTERVAL = 3000;
     private View navHeader;
-   private GoogleSignInClient signInClient;
+    private GoogleSignInClient signInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         HomeFragment homefragment = new HomeFragment();
         android.support.v4.app.FragmentTransaction homeFragmentTransaction
                 = getSupportFragmentManager().beginTransaction();
-        homeFragmentTransaction.replace(R.id.main_container,homefragment);
+        homeFragmentTransaction.replace(R.id.main_container, homefragment);
         homeFragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -61,8 +63,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        NavigationMenuView navMenuView = (NavigationMenuView)navigationView.getChildAt(0);
-        navMenuView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        NavigationMenuView navMenuView = (NavigationMenuView) navigationView.getChildAt(0);
+        navMenuView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         navigationView.setNavigationItemSelectedListener(this);
         navHeader = navigationView.getHeaderView(0);
         sharedPrefsHelper = new SharedPrefsHelper(this);
@@ -73,12 +75,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
     private void initView() {
-        ivNavHeader = (ImageView)navHeader.findViewById(R.id.ivNavHeader);
-        tvUserName = (TextView)navHeader.findViewById(R.id.tvUserName);
-        tvUserEmail = (TextView)navHeader.findViewById(R.id.tvUserEmail);
+        ivNavHeader = (ImageView) navHeader.findViewById(R.id.ivNavHeader);
+        tvUserName = (TextView) navHeader.findViewById(R.id.tvUserName);
+        tvUserEmail = (TextView) navHeader.findViewById(R.id.tvUserEmail);
         tvUserName.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_NAME));
         tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_EMAIL));
         String photoUrl = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_PHOTO);
@@ -97,32 +97,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-           /*if (mBackPressed +TIME_INTERVAL>System.currentTimeMillis()){
-               android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-               builder.setMessage("Are you sure you want to exit?")
-                       .setCancelable(false)
-                       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int which) {
-                               finishAffinity();
-                           }
-                       })
-                       .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int which) {
-                               dialog.dismiss();
-                           }
-                       });
-               android.support.v7.app.AlertDialog alert = builder.create();
-               alert.show();
-           }else {
-               Toast.makeText(getBaseContext(), "Press again to exit", Toast.LENGTH_SHORT).show();
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+                builder.setMessage("Are you sure you want to exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finishAffinity();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                android.support.v7.app.AlertDialog alert = builder.create();
+                alert.show();
+            } else {
+                Toast.makeText(getBaseContext(), "Press again to exit", Toast.LENGTH_SHORT).show();
 
-           }
+            }
             mBackPressed = System.currentTimeMillis();
-        }*/
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -138,14 +139,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -189,11 +182,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_logout){
-            dataManager.clear();
-            signInClient.signOut();
-            Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
-            startActivity(intent);
-            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

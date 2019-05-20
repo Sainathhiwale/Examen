@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp"
+        android:background="@drawable/bg_home"
         android:textAlignment="center">
 
         <ImageView
@@ -100,25 +101,27 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="#a49797" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
-        android:background="@color/graylight"
+        android:background="@drawable/bg_nav_header"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
             android:id="@+id/bankcardId"
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@color/graylight"
+            android:background="@drawable/bg_cardview"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
@@ -126,6 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/ic_card_gradient_1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -140,6 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Android"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -153,7 +158,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
@@ -164,6 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/ic_card_gradient_2"
                 android:orientation="vertical">
 
                 <ImageView
@@ -178,6 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="C Program"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -196,12 +203,12 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
-        android:background="@color/graylight"
+        android:background="@drawable/bg_nav_header"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
@@ -213,6 +220,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/ic_card_gradient_3"
                 android:orientation="vertical">
 
                 <ImageView
@@ -227,6 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Python"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -240,7 +249,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
@@ -252,6 +261,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/ic_card_gradient_4"
                 android:orientation="vertical">
 
                 <ImageView
@@ -266,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Java"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <View
@@ -280,5 +291,15 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:textSize="16sp"
+        android:text="Developed By Examen"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:background="@drawable/bg_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

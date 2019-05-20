@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.quiz.python_quiz.PythonQuizFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+     <LinearLayout
+         android:id="@+id/llAndyBegin"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginTop="@dimen/margin_12"
+         android:background="@drawable/cardview_shape"
+         android:orientation="vertical"
+         android:weightSum="1">
+
+         <TextView
+             android:id="@+id/tvPrizeLlist"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="@dimen/margin_12"
+             android:text="Python Beginners"
+             android:textAlignment="center"
+             android:textColor="@color/green" />
+
+     </LinearLayout>
+     <LinearLayout
+         android:id="@+id/llAndyInter"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginTop="@dimen/margin_12"
+         android:background="@drawable/cardview_shape"
+         android:orientation="vertical"
+         android:weightSum="1">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="@dimen/margin_12"
+             android:text="Python Intermediate"
+             android:textAlignment="center"
+             android:textColor="@color/green" />
+     </LinearLayout>
+
+     <LinearLayout
+         android:id="@+id/llAndyAdv"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginTop="@dimen/margin_12"
+         android:background="@drawable/cardview_shape"
+         android:orientation="vertical"
+         android:weightSum="1">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="@dimen/margin_12"
+             android:text="Python Advanced"
+             android:textAlignment="center"
+             android:textColor="@color/green"/>
+
+     </LinearLayout>
+     <LinearLayout
+         android:id="@+id/llSampleCode"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginTop="@dimen/margin_12"
+         android:background="@drawable/cardview_shape"
+         android:orientation="vertical"
+         android:weightSum="1">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="@dimen/margin_12"
+             android:text="Python Sample Code"
+             android:textAlignment="center"
+             android:textColor="@color/green"/>
+
+     </LinearLayout>
+</LinearLayout>
