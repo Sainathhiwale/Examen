@@ -1,4 +1,4 @@
-package com.sainath.examen.data;
+package com.sainath.examen.data.prefs;
 
 import android.content.SharedPreferences;
 

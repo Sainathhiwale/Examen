@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#786F69"
+    android:background="@drawable/bg_tag"
     tools:context=".ui.login.LoginActivity">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:layout_height="72dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_24"
-                android:src="@drawable/examen_logo" />
+                android:src="@drawable/logo_circuler" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/app_name"
                 android:textStyle="bold"
-                android:textColor="#FFF" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

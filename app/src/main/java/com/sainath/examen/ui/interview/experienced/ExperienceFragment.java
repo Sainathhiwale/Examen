@@ -1,8 +1,12 @@
 package com.sainath.examen.ui.interview.experienced;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +28,8 @@ import com.sainath.examen.R;
 import com.sainath.examen.adapter.ExperienceAdapter;
 import com.sainath.examen.data.model.expreience.Experience;
 import com.sainath.examen.data.model.user.User;
+import com.sainath.examen.data.room_database.entity.AddQuiz;
+import com.sainath.examen.data.view_model.AddQuizViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +42,7 @@ public class ExperienceFragment extends Fragment {
    private List<Experience> list = new ArrayList<>();
    private ExperienceAdapter adapter;
    private RecyclerView recyclerView;
+   private AddQuizViewModel addQuizViewModel;
 
 
       private DatabaseReference mDatabase;
@@ -53,13 +60,21 @@ public class ExperienceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_experience, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.rvExperience);
-        adapter = new ExperienceAdapter (list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        initData();
+
+        addQuizViewModel = ViewModelProviders.of(this).get(AddQuizViewModel.class);
+        addQuizViewModel.getAllQuizDetails().observe(this, new Observer<List<AddQuiz>>() {
+            @Override
+            public void onChanged(@Nullable List<AddQuiz> addQuizs) {
+            adapter.setAddQuizChanges(addQuizs);
+            }
+        });
+
+      //  initData();
 
         return view;
 

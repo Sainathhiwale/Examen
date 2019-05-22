@@ -2,7 +2,7 @@ package com.sainath.examen.app;
 
 import android.app.Application;
 
-import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.prefs.DataManager;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
 
 public class AppController extends Application{

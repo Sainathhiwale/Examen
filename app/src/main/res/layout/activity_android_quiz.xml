@@ -11,7 +11,6 @@
         android:id="@+id/app_bar_layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stateListAnimator="@anim/appbar_elevated"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp"
         tools:targetApi="lollipop">
@@ -51,7 +50,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
+
+
+
     <LinearLayout
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -218,78 +222,6 @@
 
     </LinearLayout>
 
-   <!-- <LinearLayout
-        android:id="@+id/llAndyBegin"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:background="@drawable/cardview_shape"
-        android:orientation="vertical"
-        android:weightSum="1">
 
-        <TextView
-            android:id="@+id/tvPrizeLlist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Beginners"
-            android:textAlignment="center"
-            android:textColor="@color/green" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llAndyInter"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:background="@drawable/cardview_shape"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Intermediate"
-            android:textAlignment="center"
-            android:textColor="@color/green" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llAndyAdv"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:background="@drawable/cardview_shape"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Advanced"
-            android:textAlignment="center"
-            android:textColor="@color/green"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llSampleCode"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:background="@drawable/cardview_shape"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_12"
-            android:text="Android Sample Code"
-            android:textAlignment="center"
-            android:textColor="@color/green"/>
-
-    </LinearLayout>-->
 
 </LinearLayout>

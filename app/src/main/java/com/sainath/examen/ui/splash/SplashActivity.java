@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.sainath.examen.HomeActivity;
@@ -30,6 +32,8 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+        Animation aniRotateClk = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
+        ivLogo.startAnimation(aniRotateClk);
         presenter = new SplashPresenterImpl(this);
         presenter.decideNextActivity();
     }

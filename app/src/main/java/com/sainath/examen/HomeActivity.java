@@ -1,7 +1,6 @@
 package com.sainath.examen;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenuView;
 import android.support.v4.app.FragmentTransaction;
@@ -22,7 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.sainath.examen.app.AppController;
-import com.sainath.examen.data.DataManager;
+import com.sainath.examen.data.prefs.DataManager;
 import com.sainath.examen.data.prefs.SharedPrefsHelper;
 import com.sainath.examen.ui.tutorial.android_tut.AndroidTutFragment;
 import com.sainath.examen.ui.feedback.FeedBackFragment;

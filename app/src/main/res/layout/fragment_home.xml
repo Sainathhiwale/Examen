@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:background="@drawable/bg_home"
+        android:background="@drawable/bg_tag"
         android:textAlignment="center">
 
         <ImageView
@@ -40,6 +40,7 @@
             android:id="@+id/textView2"
             android:layout_width="64dp"
             android:layout_height="20dp"
+            android:textColor="@color/black"
             android:layout_alignLeft="@+id/dq_imageView"
             android:layout_alignStart="@+id/dq_imageView"
             android:layout_below="@+id/dq_imageView"
@@ -68,6 +69,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:text="Interview"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
         <ImageView
@@ -88,6 +90,7 @@
             android:id="@+id/textView3"
             android:layout_width="64dp"
             android:layout_height="20dp"
+            android:textColor="@color/black"
             android:layout_alignLeft="@+id/technews_img"
             android:layout_alignStart="@+id/technews_img"
             android:layout_below="@+id/technews_img"
@@ -95,7 +98,6 @@
             android:padding="2dp"
             android:text="Tech News"
             android:textSize="10sp" />
-
 
     </RelativeLayout>
 
@@ -128,8 +130,8 @@
                 android:id="@+id/llinerAndroid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/cardview_rectangle"
                 android:gravity="center"
-                android:background="@drawable/ic_card_gradient_1"
                 android:orientation="vertical">
 
                 <ImageView
@@ -144,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Android"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <View
@@ -169,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:background="@drawable/ic_card_gradient_2"
+                android:background="@drawable/cardview_rectangle"
                 android:orientation="vertical">
 
                 <ImageView
@@ -184,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="C Program"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <View
@@ -220,7 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:background="@drawable/ic_card_gradient_3"
+                android:background="@drawable/cardview_rectangle"
                 android:orientation="vertical">
 
                 <ImageView
@@ -235,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Python"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <View
@@ -261,7 +263,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:background="@drawable/ic_card_gradient_4"
+                android:background="@drawable/cardview_rectangle"
                 android:orientation="vertical">
 
                 <ImageView
@@ -276,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
                     android:text="Java"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <View
