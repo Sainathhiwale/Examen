@@ -15,6 +15,20 @@ public class Validation {
     private static final String PHONE_MSG = "invalid number";
 
     private static final String REQUIRED_MSG =  "cannot be empty";
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String EMAIL_MSG = "invalid email";
+    private static final String PASSWORD_MSG = "Password should be 8 or less than 16 character";
+    private static final String errMsg = "Enter 10 digit Number";
+    private static final String NAMEERROR_MSG = "Name should be 8 character";
+    private static final String ERROR_MSG = "Name should be 10 character";
+    private static final String DEBIT_CARD = "^(?:(?4[0-9]{12}(?:[0-9]{3})?)|\n" +
+            "\t\t(?5[1-5][0-9]{14})|\n" +
+            "\t\t(?6(?:011|5[0-9]{2})[0-9]{12})|\n" +
+            "\t\t(?3[47][0-9]{13})|\n" +
+            "\t\t(?3(?:0[0-5]|[68][0-9])?[0-9]{11})|\n" +
+            "\t\t(?(?:2131|1800|35[0-9]{3})[0-9]{11}))$";
+
+
     // check the input field has any text or not
     // return true if it contains text otherwise false
     public static boolean hasText(EditText editText) {
@@ -30,6 +44,88 @@ public class Validation {
 
         return true;
     }
+
+
+    public static boolean isValidPassword(EditText editText) {
+
+        String text = editText.getText().toString().trim();
+        editText.setError(null);
+        editText.setFocusable(true);
+        // length 0 means there is no text
+        if (text.length() == 0) {
+            editText.setError(REQUIRED_MSG);
+            return false;
+        }else if(text.length()<8||text.length()>16) {
+            editText.setError(PASSWORD_MSG);
+            return false;
+        }
+        return true;
+    }
+
+
+    public static boolean isEmailAddress(EditText editText, boolean required) {
+        return isValid(editText, EMAIL_REGEX, EMAIL_MSG, required);
+    }
+
+
+
+
+    public static boolean checkLength(EditText editText)
+    {
+        boolean check;
+        String errMsg = "Enter 10 digit Number";
+
+        String text = editText.getText().toString().trim();
+        // clearing the error, if it was previously set by some other values
+        editText.setError(null);
+
+        if(text.length() < 10 || text.length() > 13)
+        {
+            editText.setError(errMsg);
+            check = false;
+        }
+        else
+        {
+            check = true;
+        }
+        return check;
+    }
+
+
+
+
+
+
+    public static boolean isValidMobile(EditText editText) {
+        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+        Matcher m = p.matcher(editText.getText().toString().trim());
+        if((m.find() && m.group().equals(editText.getText().toString().trim()))){
+            return true;
+        }else if(editText.getText().toString().trim().length()<10||editText.getText().toString().trim().length()>13){
+            editText.setError(errMsg);
+            return false;
+        }else {
+            editText.setError(PHONE_MSG);
+            return false;
+        }
+    }
+
+    public static boolean isValidName(EditText editText) {
+        Pattern p = Pattern.compile("^[a-zA-Z0-9]+$");
+        Matcher m = p.matcher(editText.getText().toString().trim());
+        if ((m.find() && m.group().equals(editText.getText().toString().trim()))) {
+            return true;
+        } else if (editText.getText().toString().trim().length() < 10 || editText.getText().toString().trim().length() > 25) {
+            editText.setError(ERROR_MSG);
+            return false;
+        }  else {
+            editText.setError(NAMEERROR_MSG);
+            return false;
+        }
+    }
+
+
+
 
     public static boolean hasTextForTextView(TextView editText) {
 

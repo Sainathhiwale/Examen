@@ -19,7 +19,7 @@ public class AddQuizRepository {
     public AddQuizRepository(Application application){
       ExamenDatabase examenDatabase = ExamenDatabase.getInstance(application);
       addQuizDao  = examenDatabase.addQuizDao();
-     allQuiz  = addQuizDao.getAllQuiz();
+    // allQuiz  = addQuizDao.getAllQuiz();
   }
 
   public void insert(AddQuiz addQuiz){

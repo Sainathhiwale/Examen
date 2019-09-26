@@ -28,8 +28,5 @@ public interface AddQuizDao {
     void getAllDelete();
 
 
-    @Query("SELECT * FROM interview_quiz ORDER BY id DESC")
-    LiveData<List<AddQuiz>> getAllQuiz();
-
 
 }

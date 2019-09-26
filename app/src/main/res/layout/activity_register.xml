@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    android:orientation="vertical"
+    tools:context=".ui.register.RegisterActivity">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,132 +14,139 @@
 
         <LinearLayout
             android:id="@+id/linear_layout"
-            android:paddingTop="@dimen/padding_56"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/padding_20"
             android:paddingRight="@dimen/padding_20"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/margin_40"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tvAppTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Examen"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:textColor="@color/colorPrimary"/>
+            android:paddingTop="@dimen/padding_56">
 
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:weightSum="1">
+
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_weight="0.1"
-                    android:src="@drawable/ic_email"/>
+                    android:src="@drawable/ic_person_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_8"
                     android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/margin_8">
+                    android:gravity="center_vertical">
 
                     <EditText
-                        android:id="@+id/etUserEmail"
+                        android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark"
-                        android:inputType="textEmailAddress"
-                        android:hint="Email" />
+                        android:hint="Name"
+                        android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8"
+                android:orientation="horizontal"
                 android:weightSum="1">
+
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_weight="0.1"
-                    android:src="@drawable/ic_lock"/>
+                    android:src="@drawable/ic_email" />
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_8"
-                    app:passwordToggleEnabled="true"
                     android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/margin_8">
+                    android:gravity="center_vertical">
 
-                    <EditText android:id="@+id/etUserPassword"
+                    <EditText
+                        android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark"
-                        android:inputType="textPassword"
-                        android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-                        android:hint="Password" />
+                        android:hint="Email"
+                        android:inputType="textEmailAddress" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/tvForgotPass"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/forgot"
-                    tools:textColorLink="@color/grey_400" />
-            </LinearLayout>
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_weight="0.1"
+                    android:src="@drawable/ic_lock" />
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_weight="0.9"
+                    android:gravity="center_vertical"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+                        android:hint="Password"
+                        android:inputType="textPassword" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btSignUp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"
-                android:layout_marginTop="@dimen/margin_24"
-                android:layout_marginBottom="@dimen/margin_24"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_10"
                 android:padding="@dimen/padding_12"
                 android:textAllCaps="false"
-                android:text="Sign In"/>
+                android:text="Sign Up"/>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/actvRegisterLink"
-                android:layout_width="fill_parent"
+                android:id="@+id/actvSignInLink"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack"
-                android:text="Create Account ?"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:text="@string/text_member"
                 android:textSize="16sp"/>
         </LinearLayout>
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

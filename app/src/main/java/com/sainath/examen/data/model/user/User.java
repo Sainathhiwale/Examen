@@ -5,21 +5,13 @@ import android.support.v4.app.FragmentActivity;
 public class User {
     private String displayName;
     private String email;
-    private String  userID;
+    private String  password;
 
-
-    public User() {
-
-    }
-
-
-    public User(String id, String email, String displayName) {
-        this.userID =id;
+    public User( String email, String password) {
+        this.displayName = displayName;
         this.email = email;
-        this.displayName =displayName;
+        this.password = password;
     }
-
-
 
     public String getDisplayName() {
         return displayName;
@@ -37,12 +29,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

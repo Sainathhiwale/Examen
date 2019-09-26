@@ -38,22 +38,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private long mBackPressed;
     private static final int TIME_INTERVAL = 3000;
     private View navHeader;
-    private GoogleSignInClient signInClient;
+    private String getUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        dataManager = ((AppController) getApplication()).getDataManager();
-        dataManager.setLoggedIn();
+        getUserName = getIntent().getStringExtra("name");
+
+       /* dataManager = ((AppController) getApplication()).getDataManager();
+        dataManager.setLoggedIn();*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //Default Fragment
-        HomeFragment homefragment = new HomeFragment();
-        android.support.v4.app.FragmentTransaction homeFragmentTransaction
-                = getSupportFragmentManager().beginTransaction();
-        homeFragmentTransaction.replace(R.id.main_container, homefragment);
-        homeFragmentTransaction.commit();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,22 +66,29 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navHeader = navigationView.getHeaderView(0);
         sharedPrefsHelper = new SharedPrefsHelper(this);
         initView();
-        //showPrefsToViews();
+
 
 
     }
 
 
     private void initView() {
+        HomeFragment homefragment = new HomeFragment();
+        android.support.v4.app.FragmentTransaction homeFragmentTransaction
+                = getSupportFragmentManager().beginTransaction();
+        homeFragmentTransaction.replace(R.id.main_container, homefragment);
+        homeFragmentTransaction.commit();
+
         ivNavHeader = (ImageView) navHeader.findViewById(R.id.ivNavHeader);
         tvUserName = (TextView) navHeader.findViewById(R.id.tvUserName);
         tvUserEmail = (TextView) navHeader.findViewById(R.id.tvUserEmail);
-        tvUserName.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_NAME));
+        tvUserEmail.setText(getUserName);
+       /* tvUserName.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_NAME));
         tvUserEmail.setText(sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_EMAIL));
         String photoUrl = sharedPrefsHelper.getStringPrefs(SharedPrefsHelper.KEY_USER_PHOTO);
         Glide.with(getApplicationContext())
                 .load(photoUrl)
-                .into(ivNavHeader);
+                .into(ivNavHeader);*/
 
 
     }
